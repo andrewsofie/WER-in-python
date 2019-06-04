@@ -199,6 +199,14 @@ def wer(r, h):
 if __name__ == '__main__':
     filename1 = sys.argv[1]
     filename2 = sys.argv[2]
-    r = file(filename1).read().split()
-    h = file(filename2).read().split()
-    wer(r, h)   
+    #Added lower case conversion to file read
+    r = file(filename1).read().lower()
+    #Added punctuation removal to string
+    rnp = r.translate(None, string.punctuation)
+    rl = rnp.split()
+    #Added lower case conversion to file read
+    h = file(filename2).read().lower()
+    #Added punctuation removal to string
+    hnp = h.translate(None, string.punctuation)
+    hl = hnp.split()
+    wer(rl, hl)   
